@@ -20,6 +20,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/home-form', [App\Http\Controllers\encryptController::class, 'store'])->name('form.show');
+Route::get('/home-form', [App\Http\Controllers\encryptController::class, 'showForm'])->name('form.show');
 Route::post('/encrypted-value',[App\Http\Controllers\encryptController::class, 'store']) ->name('post.add');
 Route::view('/submit','form');

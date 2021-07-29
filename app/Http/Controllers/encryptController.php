@@ -14,9 +14,9 @@ class encryptController extends Controller
    }
    public function store(Request $request)
    {
-//       $request->validate([
-//           'value' => 'required'
-//       ]);
+       $request->validate([
+           'value' => 'required'
+       ]);
 
 
         $text_data = $request->value;
