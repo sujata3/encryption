@@ -2,15 +2,17 @@
 
 @section('content')
 
-<h2>Form</h2>
+<h2>Encrypt</h2>
 
 <form method="post" action="{{route('post.add')}}">
     @csrf
-    <label for="title">Title:</label><br>
-    <input type="text" id="title" name="title" placeholder="Add title"><br>
-    <label for="description">Description:</label><br>
-    <input type="text" id="description" name="description" placeholder="Add description"><br><br>
+    <label for="value">Value:</label><br>
+    <input type="text"  name="value" placeholder=" " required><br>
+    <span style="color:red">@error('value'){{$message}} @enderror </span>
     <input type="submit" value="Submit">
 </form>
+    @if($data != null)
+       <div>{{$data}}}</div>
+    @endif
 
 @endsection

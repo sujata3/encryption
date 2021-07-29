@@ -12,23 +12,34 @@ class encryptController extends Controller
    {
        return view('Form.add-detail');
    }
-   public function store(Request $request){
+   public function store(Request $request)
+   {
+//       $request->validate([
+//           'value' => 'required'
+//       ]);
 
-      $data = new Encrypt();
-        $request-> validate([
-           'title' => 'required',
-           'description' => 'required'
-       ]);
 
-       $data -> title = $request->title;
-       $data -> Description = $request->description;
-       $data -> save();
+        $text_data = $request->value;
+
+        if($text_data == null){
+            $data = null;
+            return view('Form.add-detail', compact('data'));
+        }else{
+            $data = md5($text_data);
+            return view('Form.add-detail', compact('data'));
+        }
+
+
+
+
+
+
+
+
+
+//       $data -> title = $request->title;
+//       $data -> Description = $request->description;
+//       $data -> save();
    }
 
-//    public function storeSecret(Request $request)
-//    {
-//        $request->data()->description([
-//            'Description' => Crypt::encryptString($request->description),
-//        ])->save();
-//    }
 }

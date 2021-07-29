@@ -14,9 +14,7 @@ class CreateEncryptsTable extends Migration
     public function up()
     {
         Schema::create('encrypts', function (Blueprint $table) {
-            $table->id();
-            $table->string('title')->nullable();
-            $table->text('Description')->nullable();
+            $table->string('value')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
