@@ -21,5 +21,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home-form', [App\Http\Controllers\encryptController::class, 'showForm'])->name('form.show');
-Route::post('/encrypted-value',[App\Http\Controllers\encryptController::class, 'store']) ->name('post.add');
-Route::view('/submit','form');
+Route::post('/encrypted-value',[App\Http\Controllers\encryptController::class, 'store']) ->name('value.hash');
+Route::view('/submit','hash');
+Route::post('/validate-value',[App\Http\Controllers\encryptController::class, 'validation']) ->name('value.validate');
+Route::view('/submit','submit');
