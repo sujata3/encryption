@@ -20,12 +20,13 @@ class encryptController extends Controller
 
 
        $text_data = $request->value;
+       $algorithm = $request->algorithms;
 
-       if ($text_data == null) {
+       if ($text_data == null && $algorithm == null) {
            $data = null;
            return back()->with('data', $data);
        } else {
-           $data = sha1($text_data);
+           $data = $algorithm($text_data);
            return back()->with('data', $data);
        }
    }
@@ -37,11 +38,12 @@ class encryptController extends Controller
            'strValue' => 'required'
        ]);
 
+
        $h_data = $request->encryptValue;
        $s_data = $request->strValue;
+       $algorithm = $request->algorithms;
 
-
-          if ( $h_data == sha1($s_data)) {
+          if ( $h_data == $algorithm($s_data)) {
               return back()->with('matched', 'Matched');
            }
           else{

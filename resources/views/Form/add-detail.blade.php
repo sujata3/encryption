@@ -6,6 +6,16 @@
 
 <form method="post" id="encrypt" action="{{route('value.hash')}}">
     @csrf
+    <br>
+    <select name="algorithms" id="encrypt">
+        <option value="">Select an algorithm</option>
+        <option value="md5">md5</option>
+        <option value="sha1">sha1</option>
+        <option value="bcrypt">bcrypt</option>
+        <option value="base64_encode">base64</option>
+    </select>
+    <br>
+    <br>
     <label for="str-value">String Value:</label><br>
     <input type="text"  name="value" placeholder=" ">
     <div style="color:red">@error('value'){{$message}} @enderror </div>
@@ -23,6 +33,16 @@
 <form method="post" id="decrypt" action="{{route('value.validate')}}">
     @csrf
 
+    <br>
+    <select name="algorithms" id="decrypt">
+        <option value="">Select an algorithm</option>
+        <option value="md5">md5</option>
+        <option value="sha1">sha1</option>
+        <option value="bcrypt">bcrypt</option>
+        <option value="base64_encode">base64</option>
+    </select>
+    <br>
+    <br>
     <label for="hash-Value">Hash Value:</label><br>
     <input type="text"  name="encryptValue" placeholder=" ">
     <div style="color:red">@error('encryptValue'){{$message}} @enderror </div>
