@@ -14,14 +14,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('Form.encryption-page');
 });
+Route::get('/encryption',[App\Http\Controllers\encryptController::class, 'encryptionPage']) ->name('page.encrypt');
+Route::get('/validation',[App\Http\Controllers\encryptController::class, 'validationPage']) ->name('page.validate');
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/home-form', [App\Http\Controllers\encryptController::class, 'showForm'])->name('form.show');
-Route::post('/encrypted-value',[App\Http\Controllers\encryptController::class, 'store']) ->name('value.hash');
-Route::view('/submit','hash');
-Route::post('/validate-value',[App\Http\Controllers\encryptController::class, 'validation']) ->name('value.validate');
+// Encryption
+Route::post('/encryption',[App\Http\Controllers\encryptController::class, 'Encryptions']) ->name('encryption');
+
+Route::get('/encryption-md5/{algorithms}',[App\Http\Controllers\encryptController::class, 'md5']) ->name('encrypt.md5');
+Route::get('/encrypted-sha1/{algorithms}',[App\Http\Controllers\encryptController::class, 'sha1']) ->name('encrypt.sha1');
+Route::get('/encrypted-base64/{algorithms}',[App\Http\Controllers\encryptController::class, 'base64']) ->name('encrypt.base64');
+Route::get('/encrypted-bcrypt/{algorithms}',[App\Http\Controllers\encryptController::class, 'bcrypt']) ->name('encrypt.bcrypt');
+Route::view('/submit','submit');
+
+// Validation
+Route::post('/validation',[App\Http\Controllers\encryptController::class, 'Validations']) ->name('validation');
+Route::get('/validate-md5/{algorithms}',[App\Http\Controllers\encryptController::class, 'functionForMd5']) ->name('md5.validation');
+Route::get('/validate-sha1/{algorithms}',[App\Http\Controllers\encryptController::class, 'functionForSha1']) ->name('sha1.validation');
+Route::get('/validate-base64/{algorithms}',[App\Http\Controllers\encryptController::class, 'functionForBase64']) ->name('base64.validation');
+Route::get('/validate-bcrypt/{algorithms}',[App\Http\Controllers\encryptController::class, 'functionForBcrypt']) ->name('bcrypt.validation');
 Route::view('/submit','submit');
